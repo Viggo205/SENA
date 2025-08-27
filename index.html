@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horario de clases</title>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --text: #333;
+      --card: #fff;
+      --acordeon: #6ee7b7;
+      --acordeon-hover: #34d399;
+      --header: #4e73df;
+    }
+
+    body.dark {
+      --bg: #1e293b;
+      --text: #f8fafc;
+      --card: #334155;
+      --acordeon: #475569;
+      --acordeon-hover: #64748b;
+      --header: #0ea5e9;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      background: var(--header);
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    .modo-btn {
+      display: block;
+      margin: 0 auto 20px auto;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      background: var(--header);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .acordeon {
+      background: var(--acordeon);
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: 0.3s;
+    }
+    .acordeon:hover {
+      background: var(--acordeon-hover);
+    }
+    .icono {
+      transition: transform 0.3s;
+    }
+    .activo .icono {
+      transform: rotate(90deg);
+    }
+    .contenido {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease-out;
+      background: var(--card);
+      border-radius: 10px;
+      margin-top: 8px;
+      padding: 0 15px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    table th {
+      background: var(--header);
+      color: white;
+    }
+    .btn {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn-eliminar {
+      background: #e11d48;
+      color: white;
+    }
+    .formulario {
+      margin: 20px 0;
+      padding: 15px;
+      background: var(--card);
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .formulario input, .formulario select {
+      padding: 8px;
+      margin: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .btn-agregar {
+      background: var(--header);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Horario de asignaturas</h1>
+  <button class="modo-btn" onclick="toggleModo()">🌙 Cambiar tema</button>
+
+  <!-- Formulario -->
+  <div class="formulario">
+    <h3>Agregar clase</h3>
+    <select id="dia">
+      <option value="Lunes">Lunes</option>
+      <option value="Martes">Martes</option>
+      <option value="Miércoles">Miércoles</option>
+      <option value="Jueves">Jueves</option>
+      <option value="Viernes">Viernes</option>
+    </select>
+    <input type="text" id="materia" placeholder="Materia">
+    <input type="text" id="hora" placeholder="Ej: 07:00 - 07:55 a.m.">
+    <button class="btn btn-agregar" onclick="agregarClase()">Agregar</button>
+  </div>
+
+  <!-- Acordeones -->
+  <div id="acordeones"></div>
+
+  <script>
+    const dias = ["Lunes","Martes","Miércoles","Jueves","Viernes"];
+    let horarios = JSON.parse(localStorage.getItem("horarios")) || {
+      "Lunes": [],
+      "Martes": [],
+      "Miércoles": [],
+      "Jueves": [],
+      "Viernes": []
+    };
+
+    // Modo oscuro/claro
+    if(localStorage.getItem("tema") === "oscuro"){
+      document.body.classList.add("dark");
+    }
+
+    function toggleModo(){
+      document.body.classList.toggle("dark");
+      if(document.body.classList.contains("dark")){
+        localStorage.setItem("tema","oscuro");
+      } else {
+        localStorage.setItem("tema","claro");
+      }
+    }
+
+    function guardar() {
+      localStorage.setItem("horarios", JSON.stringify(horarios));
+    }
+
+    function render() {
+      const container = document.getElementById("acordeones");
+      container.innerHTML = "";
+      dias.forEach(dia => {
+        let acordeon = document.createElement("div");
+        acordeon.className = "acordeon";
+        acordeon.innerHTML = `${dia} <span class="icono">▶</span>`;
+        container.appendChild(acordeon);
+
+        let contenido = document.createElement("div");
+        contenido.className = "contenido";
+
+        if(horarios[dia].length > 0){
+          let tabla = `<table>
+            <tr><th>Materia</th><th>Hora</th><th>Acción</th></tr>`;
+          horarios[dia].forEach((clase,i)=>{
+            tabla += `<tr>
+                        <td>${clase.materia}</td>
+                        <td>${clase.hora}</td>
+                        <td><button class="btn btn-eliminar" onclick="eliminarClase('${dia}',${i})">Eliminar</button></td>
+                      </tr>`;
+          });
+          tabla += "</table>";
+          contenido.innerHTML = tabla;
+        } else {
+          contenido.innerHTML = "<p>Sin clases registradas.</p>";
+        }
+
+        container.appendChild(contenido);
+
+        acordeon.addEventListener("click", ()=>{
+          acordeon.classList.toggle("activo");
+          if (contenido.style.maxHeight) {
+            contenido.style.maxHeight = null;
+          } else {
+            contenido.style.maxHeight = contenido.scrollHeight + "px";
+          }
+        });
+      });
+    }
+
+    function agregarClase(){
+      const dia = document.getElementById("dia").value;
+      const materia = document.getElementById("materia").value.trim();
+      const hora = document.getElementById("hora").value.trim();
+      if(materia && hora){
+        horarios[dia].push({materia,hora});
+        guardar();
+        render();
+        document.getElementById("materia").value = "";
+        document.getElementById("hora").value = "";
+      } else {
+        alert("Por favor completa todos los campos");
+      }
+    }
+
+    function eliminarClase(dia, index){
+      horarios[dia].splice(index,1);
+      guardar();
+      render();
+    }
+
+    render();
+  </script>
+
+</body>
+</html>
