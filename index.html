@@ -1,279 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daily Sport</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --color-primary: #f7a83d;
-      --color-secondary: #8c531d;
-      --color-dark: #333;
-      --color-light: #fff;
-      --color-text-light: #f4f4f4;
-    }
-
-    body {
-      font-family: 'Roboto', sans-serif;
-      margin: 0;
-      line-height: 1.6;
-      color: var(--color-dark);
-      background-color: var(--color-light);
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 1rem;
-    }
-
-    h1, h2, h3 {
-      font-weight: 900;
-    }
-
-    /* Navbar */
-    .navbar {
-    background-image: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
-      padding: 0.8rem 0;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .navbar .container {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-    .nav-link {
-      color: var(--color-light);
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-    .nav-link:hover {
-      color: var(--color-primary);
-    }
-
-    /* Hero */
-    .hero {
-      position: relative;
-      height: 90vh;
-      background-image: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-    .hero-overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.5);
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      color: var(--color-light);
-      padding: 2rem;
-    }
-    .hero h1 {
-      font-size: 3rem;
-    }
-    .hero p {
-      font-size: 1.2rem;
-    }
-
-    /* Secciones */
-    .section-card {
-      background-color: var(--color-light);
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      margin: 2rem 0;
-    }
-    .section-card h2 {
-      color: var(--color-secondary);
-      border-bottom: 3px solid var(--color-primary);
-      padding-bottom: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .image-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-    }
-    .image-grid img {
-      width: 100%;
-      border-radius: 8px;
-      transition: transform 0.3s;
-    }
-    .image-grid img:hover {
-      transform: scale(1.05);
-    }
-
-    /* Quote */
-    .quote-box {
-      background-color: #f0f0f0;
-      padding: 1rem;
-      border-left: 5px solid var(--color-primary);
-      margin: 1rem 0;
-    }
-    .quote-box cite {
-      display: block;
-      margin-top: 0.5rem;
-      text-align: right;
-      font-weight: bold;
-      color: var(--color-secondary);
-    }
-
-    /* Chart */
-    .chart-container {
-      display: flex;
-      justify-content: space-around;
-      align-items: flex-end;
-      height: 250px;
-      background-color: #f7f7f7;
-      padding: 1rem;
-      border-radius: 8px;
-    }
-    .bar-group {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 20%;
-    }
-    .bar {
-      width: 100%;
-      transition: height 0.5s ease-in-out;
-    }
-    .bar-points { background-color: var(--color-secondary); }
-    .bar-wins { background-color: var(--color-primary); }
-    .bar-label { margin-top: 0.5rem; }
-
-    .chart-legend {
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-    .legend-item {
-      margin: 0 1rem;
-    }
-    .color-box {
-      width: 15px; height: 15px;
-      display: inline-block;
-      margin-right: 5px;
-    }
-
-    /* Premium */
-    .premium-section {
-      background-color: var(--color-secondary);
-      color: var(--color-text-light);
-    }
-    .premium-section h2 { color: var(--color-primary); }
-    .premium-section li {
-      margin-bottom: 0.8rem;
-    }
-
-    /* Footer */
-    .footer {
-      background-color: var(--color-dark);
-      color: var(--color-light);
-      padding: 2rem;
-      text-align: center;
-    }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.7);
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-    }
-    .modal-content {
-      background: #fff;
-      border-radius: 15px;
-      padding: 2rem;
-      width: 90%;
-      max-width: 400px;
-      position: relative;
-      text-align: center;
-    }
-    .close {
-      position: absolute;
-      top: 10px; right: 15px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: var(--color-dark);
-    }
-    .tabs {
-      display: flex;
-      margin-bottom: 1rem;
-    }
-    .tab {
-      flex: 1;
-      padding: 0.8rem;
-      cursor: pointer;
-      border: none;
-      background: #eee;
-      font-weight: bold;
-    }
-    .tab.active {
-      background: var(--color-primary);
-      color: #fff;
-    }
-    .form {
-      display: none;
-      flex-direction: column;
-    }
-    .form.active { display: flex; }
-    .form input {
-      margin: 0.5rem 0;
-      padding: 0.8rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    .form button {
-      margin-top: 1rem;
-      padding: 0.8rem;
-      background: var(--color-primary);
-      border: none;
-      color: #fff;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    .form button:hover {
-      background: var(--color-secondary);
-    }
-
-    /* Responsive */
-    @media (min-width: 768px) {
-      .hero h1 { font-size: 3.5rem; }
-    }
-    @media (min-width: 1024px) {
-      .hero h1 { font-size: 4.5rem; }
-    }
-  </style>
+  <link rel="stylesheet" href="inicio.css">
 </head>
-<body>
 
+<body>
+  
   <!-- Navbar -->
   <nav class="navbar">
     <div class="container">
-      <a href="next.html" class="nav-link">Inicio</a>
-      <a href="second.html" class="nav-link">second</a>
+      <a href="inicio.html" class="nav-link">Inicio</a>
       <a href="noticias.html" class="nav-link">Noticias</a>
-      <a href="#" class="nav-link" id="openModal">Registrarse / Iniciar sesión</a>
+      <a href="nosotros.html" class="nav-link">Nosotros</a>
+      <a href="#" class="nav-link" id="abrirModal">Registrarse / Iniciar sesión</a>
     </div>
   </nav>
-
+  
   <!-- Hero -->
   <header class="hero">
     <div class="hero-overlay"></div>
@@ -282,25 +29,40 @@
       <p>Tu dosis diaria de noticias deportivas</p>
     </div>
   </header>
-
+  
   <main class="container">
-
+    
     <!-- Noticias -->
     <section class="section-card">
       <h2>Noticias Destacadas</h2>
-      <div class="image-grid">
-        <img src="https://via.placeholder.com/300x200.png?text=Noticia+1" alt="">
-        <img src="https://via.placeholder.com/300x200.png?text=Noticia+2" alt="">
-        <img src="https://via.placeholder.com/300x200.png?text=Noticia+3" alt="">
-        <img src="https://via.placeholder.com/300x200.png?text=Noticia+4" alt="">
+      <div class="quote-box">
+        <p><b>¡Bomba en el mercado! Fichaje de última hora sacude a Europa</b></p>
+        <hr>
+        <small>El delantero estrella ha sido presentado oficialmente en su nuevo club. Todos los detalles de la negociación y su primer día de entrenamiento.</small>
+      </div>
+      <div class="quote-box">
+        <p><b>Un gol agónico le da el título de la liga al equipo sorpresa</b></p>
+        <hr>
+        <small>El partido final de la temporada tuvo un desenlace de película. Analizamos el desempeño del campeón y el futuro del subcampeón.</small>
+      </div>
+      <div class="quote-box">
+        <p><b>Sorpresiva salida de un ídolo: se va a la liga árabe</b></p>
+        <hr>
+        <small>Después de años en el club, el capitán toma la decisión de irse por un proyecto millonario. La afición está dividida.</small>
+      </div>
+      <div class="quote-box">
+        <p><b>El crack de moda llega a la capital española</b></p>
+        <hr>
+        <small>El crack de moda llega a la capital española
+          El club blanco se hace con los servicios de una de las promesas más codiciadas. ¿Será el fichaje del año?</small>
       </div>
     </section>
-
+    
     <!-- Opiniones -->
     <section class="section-card">
       <h2>Análisis y Opinión</h2>
       <div class="quote-box">
-        <p>"Daly Sport ofrece una perspectiva única del juego."</p>
+        <p>"Daily Sport ofrece una perspectiva única del juego."</p>
         <cite>- Ana Rodríguez</cite>
       </div>
       <div class="quote-box">
@@ -308,63 +70,108 @@
         <cite>- Javier García</cite>
       </div>
     </section>
-
-    <!-- Estadísticas -->
+    
+    <!-- Partidos Recientes -->
     <section class="section-card">
-      <h2>Resultados y Estadísticas</h2>
-      <div class="chart-container">
-        <div class="bar-group">
-          <div class="bar bar-points" style="height: 70%;"></div>
-          <div class="bar bar-wins" style="height: 25%;"></div>
-          <div class="bar-label">Real Madrid</div>
-        </div>
-        <div class="bar-group">
-          <div class="bar bar-points" style="height: 65%;"></div>
-          <div class="bar bar-wins" style="height: 20%;"></div>
-          <div class="bar-label">FC Barcelona</div>
-        </div>
-        <div class="bar-group">
-          <div class="bar bar-points" style="height: 60%;"></div>
-          <div class="bar bar-wins" style="height: 18%;"></div>
-          <div class="bar-label">Atlético</div>
-        </div>
-        <div class="bar-group">
-          <div class="bar bar-points" style="height: 55%;"></div>
-          <div class="bar bar-wins" style="height: 15%;"></div>
-          <div class="bar-label">Sevilla</div>
-        </div>
-      </div>
-      <div class="chart-legend">
-        <span class="legend-item"><span class="color-box" style="background: var(--color-secondary);"></span> Puntos</span>
-        <span class="legend-item"><span class="color-box" style="background: var(--color-primary);"></span> Ganados</span>
+      <h2>Partidos Recientes</h2>
+      <div class="matches-table-container">
+        <table class="matches-table">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Equipo Local</th>
+              <th>Resultado</th>
+              <th>Equipo Visitante</th>
+              <th>Competición</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01/10/2025</td>
+              <td class="team-name">Manchester City</td>
+              <td class="score">
+                <span class="score-home">3</span>
+                <span class="score-separator">-</span>
+                <span class="score-away">1</span>
+              </td>
+              <td class="team-name">Liverpool</td>
+              <td class="competition">Premier League</td>
+            </tr>
+            <tr>
+              <td>30/09/2025</td>
+              <td class="team-name">Bayern Munich</td>
+              <td class="score">
+                <span class="score-home">2</span>
+                <span class="score-separator">-</span>
+                <span class="score-away">2</span>
+              </td>
+              <td class="team-name">Borussia Dortmund</td>
+              <td class="competition">Bundesliga</td>
+            </tr>
+            <tr>
+              <td>29/09/2025</td>
+              <td class="team-name">Real Madrid</td>
+              <td class="score">
+                <span class="score-home">4</span>
+                <span class="score-separator">-</span>
+                <span class="score-away">0</span>
+              </td>
+              <td class="team-name">Atlético Madrid</td>
+              <td class="competition">La Liga</td>
+            </tr>
+            <tr>
+              <td>28/09/2025</td>
+              <td class="team-name">Paris Saint-Germain</td>
+              <td class="score">
+                <span class="score-home">1</span>
+                <span class="score-separator">-</span>
+                <span class="score-away">3</span>
+              </td>
+              <td class="team-name">Marseille</td>
+              <td class="competition">Ligue 1</td>
+            </tr>
+            <tr>
+              <td>27/09/2025</td>
+              <td class="team-name">Juventus</td>
+              <td class="score">
+                <span class="score-home">2</span>
+                <span class="score-separator">-</span>
+                <span class="score-away">1</span>
+              </td>
+              <td class="team-name">AC Milan</td>
+              <td class="competition">Serie A</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
-
+    
     <!-- Premium -->
     <section class="section-card premium-section">
-      <h2>Daly Sport Premium</h2>
+      <h2>Daily Sport Premium</h2>
       <ul>
         <li>Reportajes exclusivos</li>
         <li>Experiencia sin anuncios</li>
         <li>Acceso anticipado a contenido</li>
       </ul>
     </section>
-
+    
   </main>
-
+  
   <!-- Footer -->
   <footer class="footer">
-    <p>Contacto: info@dalysport.com | Tel: +34 123 456 789</p>
+    <p>Contacto: info@dailysport.com | Tel: +34 123 456 789</p>
     <p>Síguenos: Facebook | Twitter | Instagram</p>
+    <p><a href="trat_datos.html">Tratamiento de datos</a></p>
   </footer>
-
+  
   <!-- Modal -->
   <div class="modal" id="authModal">
     <div class="modal-content">
       <span class="close" id="closeModal">&times;</span>
       <div class="tabs">
-        <button class="tab active" id="registerTab">Registrarse</button>
-        <button class="tab" id="loginTab">Iniciar sesión</button>
+        <!--<button class="tab active" id="registerTab">Registrarse</button>-->
+       <!-- <button class="tab" id="loginTab">Iniciar sesión</button>-->
       </div>
       <form id="registerForm" class="form active">
         <input type="text" placeholder="Nombre completo" required>
@@ -372,41 +179,17 @@
         <input type="password" placeholder="Contraseña" required>
         <button type="submit">Registrarse</button>
       </form>
+      <!--
       <form id="loginForm" class="form">
         <input type="email" placeholder="Correo electrónico" required>
         <input type="password" placeholder="Contraseña" required>
         <button type="submit">Ingresar</button>
-      </form>
+      </form>-->
     </div>
   </div>
-
-  <!-- JS -->
-  <script>
-    const modal = document.getElementById("authModal");
-    const openModal = document.getElementById("openModal");
-    const closeModal = document.getElementById("closeModal");
-    const registerTab = document.getElementById("registerTab");
-    const loginTab = document.getElementById("loginTab");
-    const registerForm = document.getElementById("registerForm");
-    const loginForm = document.getElementById("loginForm");
-
-    openModal.addEventListener("click", () => modal.style.display = "flex");
-    closeModal.addEventListener("click", () => modal.style.display = "none");
-    window.addEventListener("click", (e) => { if (e.target === modal) modal.style.display = "none"; });
-
-    registerTab.addEventListener("click", () => {
-      registerTab.classList.add("active");
-      loginTab.classList.remove("active");
-      registerForm.classList.add("active");
-      loginForm.classList.remove("active");
-    });
-    loginTab.addEventListener("click", () => {
-      loginTab.classList.add("active");
-      registerTab.classList.remove("active");
-      loginForm.classList.add("active");
-      registerForm.classList.remove("active");
-    });
-  </script>
-
+  
+  <script type="text/javascript" charset="utf-8" src="inicio.js"></script>
+  
 </body>
+
 </html>
