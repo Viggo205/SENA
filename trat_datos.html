@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Sport</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="trat_datos.css">
+</head>
+
+<body>
+  
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="contenedor">
+      <a href="inicio.html" class="nav">Inicio</a>
+      <a href="noticias.html" class="enlace-nav">Noticias</a>
+      <a href="nosotros.html" class="enlace-nav">Nosotros</a>
+      <a href="#" class="nav-link" id="abrModal">Registrarse / Iniciar sesión</a>
+    </div>
+  </nav>
+  
+  
+  <main class="container">
+    
+    <!-- Noticias -->
+    <section class="section-card">
+      <h2>Tratamiento de datos</h2>
+      <div class="quote-box">
+        <p>
+          En Daily Sports nos tomamos muy en serio la privacidad de nuestros usuarios. Por ello, recopilamos únicamente los datos necesarios para ofrecer una mejor experiencia en nuestro blog: nombre y correo electrónico. <br><br>
+          
+          <b>¿Para qué usamos tus datos?</b><br><br>
+          
+          El nombre se utiliza únicamente para personalizar la comunicación contigo.<br><br>
+          
+          El correo electrónico se emplea para enviarte actualizaciones, boletines informativos o responder a tus consultas, siempre con tu consentimiento previo.<br><br>
+          
+          <b>¿Qué no hacemos?</b><br><br>
+          
+          No compartimos, vendemos ni cedemos tus datos personales a terceros.<br><br>
+          
+          No enviamos spam. Solo recibirás contenido relacionado con Daily Sports si así lo deseas.<br><br>
+          
+          <b>Seguridad y control</b><br><br>
+          
+          Tus datos están protegidos y almacenados de forma segura. Además, puedes solicitar en cualquier momento la modificación o eliminación de tu información escribiéndonos a [tu correo de contacto aquí].<br><br>
+          
+          Al proporcionar tus datos, aceptas este tratamiento conforme a la normativa vigente en materia de protección de datos.<br><br><br><br>
+        </p>
+      </div>
+      
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="p">Contacto: info@dailysport.com | Tel: +34 123 456 789</p>
+    <p class="p">Síguenos: Facebook | Twitter | Instagram</p>
+    <p><a href="trat_datos.html">Tratamiento de datos</a></p>
+  </footer>
+  
+  <!-- Modal -->
+  <div class="modal" id="authModal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <div class="tabs">
+      </div>
+      <form id="registerForm" class="form active">
+        <input type="text" placeholder="Nombre completo" required>
+        <input type="email" placeholder="Correo electrónico" required>
+        <input type="password" placeholder="Contraseña" required>
+        <button type="submit">Registrarse</button>
+      </form>
+    </div>
+  </div>
+  
+  <script type="text/javascript" charset="utf-8" src="inicio.js"></script>
+  
+</body>
+
+</html>
