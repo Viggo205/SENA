@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Sport</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nosotros.css">
+</head>
+
+<body>
+  
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="inicio.html" class="nav-link">Inicio</a>
+      <a href="noticias.html" class="nav-link">Noticias</a>
+      <a href="nosotros.html" class="nav-link">Nosotros</a>
+      <a href="#" class="nav-link" id="abrirModal">Registrarse / Iniciar sesión</a>
+    </div>
+  </nav>
+  
+  
+  <main class="container">
+    
+    <!-- Noticias -->
+    <section class="section-card">
+      <h2>Acerca de nosotros</h2>
+      <div class="quote-box">
+        <p>
+          En Daily Sports creemos que la pasión por el fútbol no debe estar reñida con la objetividad. Por eso, nuestro compromiso es ofrecerte información imparcial, actualizada y clara sobre lo que ocurre en las principales ligas del mundo. <br><br>
+
+Somos un blog deportivo independiente que se dedica a cubrir lo más relevante del fútbol internacional: resultados, resúmenes, momentos clave y noticias de último minuto. Sin rumores, sin exageraciones, sin colores. Solo los hechos, tal como suceden. <br> <br>
+
+Cubrimos competencias como la Premier League, LaLiga, Serie A, Bundesliga, Ligue 1, entre otras, con un enfoque centrado en la actualidad y el respeto por el lector. Queremos que encuentres en Daily Sports un espacio confiable para mantenerte informado cada día, sin distracciones ni inclinaciones. <br> <br>
+
+Porque el fútbol se disfruta más cuando se entiende desde todos los ángulos.
+        </p>
+      </div>
+      
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <p class="p">Contacto: info@dailysport.com | Tel: +34 123 456 789</p>
+    <p class="p">Síguenos: Facebook | Twitter | Instagram</p>
+    <p><a href="trat_datos.html">Tratamiento de datos</a></p>
+  </footer>
+  
+  <!-- Modal -->
+  <div class="modal" id="authModal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <div class="tabs">
+      </div>
+      <form id="registerForm" class="form active">
+        <input type="text" placeholder="Nombre completo" required>
+        <input type="email" placeholder="Correo electrónico" required>
+        <input type="password" placeholder="Contraseña" required>
+        <button type="submit">Registrarse</button>
+      </form>
+    </div>
+  </div>
+  
+  <script type="text/javascript" charset="utf-8" src="inicio.js"></script>
+  
+</body>
+
+</html>
