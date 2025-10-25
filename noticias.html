@@ -1,158 +1,352 @@
 <!DOCTYPE html>
-<html lang="es"> 
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inmobiliaria MarketHouse | Listado Completo de Propiedades</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter :wght@400;600;700&display=swap" rel="stylesheet">
-    <title>Daily Soccer</title>
+
     <style>
+        
+        :root {
+            --color-primario: #0A2E5D; 
+            --color-secundario: #F0F4F8;
+            --color-acento: #FFC107;
+            --color-texto: #333333; 
+            --color-blanco: #FFFFFF;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5;
-            color: #1a202c;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-texto);
+            line-height: 1.6;
         }
-        .container {
+        
+        .contenedor {
+            width: 90%;
             max-width: 1200px;
-            margin: auto;
-            padding: 1rem;
+            margin: 0 auto;
         }
-        .news-card {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        
+        #encabezado-principal {
+            background-color: var(--color-blanco);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
-        .news-card:hover {
+
+        .navegacion-barra {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        #logo {
+            font-size: 1.5rem; 
+            font-weight: 700;
+            color: var(--color-primario);
+            text-decoration: none;
+        }
+
+        #menu-principal a {
+            color: var(--color-primario);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        #menu-principal a:hover {
+            color: var(--color-acento);
+        }
+        
+        #boton-hamburguesa {
+            display: none; 
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tarjeta-propiedad {
+            background-color: var(--color-blanco);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tarjeta-propiedad:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
-        .header-bg {
-            background-image: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
+
+        .tarjeta-propiedad img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
         }
-        .btn-primary {
-            background-color: #4f46e5;
-            color: #ffffff;
-            transition: background-color 0.2s ease-in-out;
+        
+        .tarjeta-cuerpo {
+            padding: 1.5rem;
         }
-        .btn-primary:hover {
-            background-color: #4338ca;
+
+        .tarjeta-titulo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-primario);
+            margin-bottom: 0.5rem;
         }
+        
+        .tarjeta-precio {
+            font-size: 1.5rem; 
+            font-weight: 700;
+            color: var(--color-acento);
+            margin-bottom: 1rem;
+        }
+
+        .tarjeta-meta {
+            font-size: 0.875rem; 
+            color: #6B7280; 
+        }
+        
+        .boton {
+            display: inline-block;
+            padding: 0.75rem 1.5rem; 
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .boton-primario {
+            background-color: var(--color-acento);
+            color: var(--color-texto);
+        }
+
+        .boton-primario:hover {
+            background-color: #e6ac00; 
+        }
+        
+        #pie-de-pagina {
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+        }
+        
+        @media (max-width: 768px) {
+            .navegacion-barra {
+                position: relative;
+            }
+
+            #menu-principal {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px; 
+                left: 0;
+                width: 100%;
+                background-color: var(--color-blanco);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+            
+            #menu-principal.menu-activo {
+                display: flex;
+            }
+
+            #menu-principal a {
+                padding: 1rem;
+                text-align: center;
+                border-top: 1px solid var(--color-secundario);
+            }
+
+            #boton-hamburguesa {
+                display: block; 
+            }
+        }
+
     </style>
 </head>
 <body class="bg-gray-100">
 
-    <header class="header-bg text-white shadow-lg py-6">
-        <div class="container flex justify-between items-center">
-            <h1 class="text-4xl font-extrabold tracking-tight">Daily Soccer</h1>
-            <nav class="hidden md:flex space-x-6">
-                <a href="#ultimas-noticias" class="text-white hover:text-gray-200 transition-colors duration-200">Últimas Noticias</a>
-                <a href="#ligas-populares" class="text-white hover:text-gray-200 transition-colors duration-200">Ligas Populares</a>
-                <a href="#mercado-de-fichajes" class="text-white hover:text-gray-200 transition-colors duration-200">Mercado de Fichajes</a>
+    <header id="encabezado-principal">
+        <div class="contenedor navegacion-barra">
+            <a href="index.html" id="logo">MarketHouse</a> 
+            
+            <nav id="menu-principal" class="hidden md:flex space-x-4">
+                <a href="noticias.html">Propiedades</a> <a href="/servicios.html">Servicios</a>
+                <a href="next.html">Contacto</a> 
+                <a href="inicios.html">Blog</a> 
             </nav>
-            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            
+            <button id="boton-hamburguesa" class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
             </button>
         </div>
     </header>
+    <main>
 
-    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-indigo-700 bg-opacity-95 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden">
-        <div class="flex justify-end p-4">
-            <button id="close-menu-btn" class="text-white focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-        </div>
-        <nav class="flex flex-col items-center justify-center space-y-6 text-xl">
-            <a href="#ultimas-noticias" class="text-white hover:text-gray-200 transition-colors duration-200" onclick="closeMenu()">Últimas Noticias</a>
-            <a href="#ligas-populares" class="text-white hover:text-gray-200 transition-colors duration-200" onclick="closeMenu()">Ligas Populares</a>
-            <a href="#mercado-de-fichajes" class="text-white hover:text-gray-200 transition-colors duration-200" onclick="closeMenu()">Mercado de Fichajes</a>
-        </nav>
-    </div>
-
-    <main class="container py-8">
-
-        <section id="ultimas-noticias" class="mb-12">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Últimas Noticias</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Noticia 1 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
-                    <img src="https://placehold.co/600x400/1e293b/ffffff?text=Fichaje+Estrella" alt="Fichaje de jugador estrella" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">¡Bomba en el mercado! Fichaje de última hora sacude a Europa</h3>
-                        <p class="text-gray-600 text-sm">El delantero estrella ha sido presentado oficialmente en su nuevo club. Todos los detalles de la negociación y su primer día de entrenamiento.</p>
-                    </div>
-                </article>
-                <!-- Noticia 2 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
-                    <img src="https://placehold.co/600x400/1e293b/ffffff?text=Partido+Final" alt="Celebración del título de un equipo" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Un gol agónico le da el título de la liga al equipo sorpresa</h3>
-                        <p class="text-gray-600 text-sm">El partido final de la temporada tuvo un desenlace de película. Analizamos el desempeño del campeón y el futuro del subcampeón.</p>
-                    </div>
-                </article>
-                <!--Noticia 3 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
-                    <img src="https://placehold.co/600x400/1e293b/ffffff?text=Lesion+Gravisima" alt="Jugador lesionado en el campo" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Preocupación en la selección: Jugador clave sufre una grave lesión</h3>
-                        <p class="text-gray-600 text-sm">Una lesión inesperada deja al crack fuera de la próxima convocatoria. ¿Quién lo reemplazará en el once titular?</p>
-                    </div>
-                </article>
+        <section id="banner-propiedades" class="bg-gray-50 py-16 border-b border-gray-200">
+            <div class="contenedor text-center">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">Explora Nuestro Listado Completo</h1>
+                <p class="text-xl max-w-3xl mx-auto text-gray-600">Más de 1000 inmuebles listos para ser tu nuevo hogar o inversión.</p>
             </div>
         </section>
 
-        <!-- Fichajes -->
-        <section id="mercado-de-fichajes" class="mb-12">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Mercado de Fichajes</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Fichaje 1 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
-                    <img src="https://placehold.co/600x300/1e293b/ffffff?text=Fichaje+1" alt="Jugador firmando contrato" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">El crack de moda llega a la capital española</h3>
-                        <p class="text-gray-600 text-sm">El club blanco se hace con los servicios de una de las promesas más codiciadas. ¿Será el fichaje del año?</p>
+        <section id="listado-completo" class="py-16">
+            <div class="contenedor">
+                
+                <div class="grilla-propiedades">
+                    
+                    <div class="tarjeta-propiedad">
+                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Casa moderna con piscina">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">Villa de Lujo en la Montaña</h3>
+                            <p class="text-gray-600 mb-4">Anapoima, Cundinamarca</p>
+                            <div class="tarjeta-precio">$1,200,000,000 COP</div>
+                            <p class="tarjeta-meta mt-2">4 habs | 5 baños | 350 m²</p>
+                            <a href="#" class="boton boton-primario mt-4">Más Detalles</a>
+                        </div>
                     </div>
-                </article>
-                <!-- Fichaje 2 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
-                    <img src="https://placehold.co/600x300/1e293b/ffffff?text=Fichaje+2" alt="Jugador saludando a la afición" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Sorpresiva salida de un ídolo: se va a la liga árabe</h3>
-                        <p class="text-gray-600 text-sm">Después de años en el club, el capitán toma la decisión de irse por un proyecto millonario. La afición está dividida.</p>
+
+                    <div class="tarjeta-propiedad">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Apartamento moderno en la ciudad">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">Apartamento Moderno en Chapinero</h3>
+                            <p class="text-gray-600 mb-4">Bogotá D.C.</p>
+                            <div class="tarjeta-precio">$850,000,000 COP</div>
+                            <p class="tarjeta-meta mt-2">3 habs | 3 baños | 120 m²</p>
+                            <a href="#" class="boton boton-primario mt-4">Más Detalles</a>
+                        </div>
                     </div>
-                </article>
+
+                    <div class="tarjeta-propiedad">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" alt="Casa campestre con jardín">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">Casa Campestre Familiar</h3>
+                            <p class="text-gray-600 mb-4">La Calera, Cundinamarca</p>
+                            <div class="tarjeta-precio">$980,000,000 COP</div>
+                            <p class="tarjeta-meta mt-2">5 habs | 4 baños | 280 m²</p>
+                            <a href="#" class="boton boton-primario mt-4">Más Detalles</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tarjeta-propiedad">
+                        <img src="https://images.unsplash.com/photo-1499912068940-087e59b2075f?auto=format&fit=crop&w=600&q=80" alt="Apartamento con vista a la ciudad">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">Loft Exclusivo con Vista Panorámica</h3>
+                            <p class="text-gray-600 mb-4">Medellín, Antioquia</p>
+                            <div class="tarjeta-precio">$450,000,000 COP</div>
+                            <p class="tarjeta-meta mt-2">1 hab | 1 baño | 65 m²</p>
+                            <a href="#" class="boton boton-primario mt-4">Más Detalles</a>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-propiedad">
+                        <img src="https://images.unsplash.com/photo-1544408018-b22306d71b31?auto=format&fit=crop&w=600&q=80" alt="Casa frente al mar">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">Casa Vacacional Frente al Mar</h3>
+                            <p class="text-gray-600 mb-4">Cartagena, Bolívar</p>
+                            <div class="tarjeta-precio">$1,800,000,000 COP</div>
+                            <p class="tarjeta-meta mt-2">6 habs | 7 baños | 450 m²</p>
+                            <a href="#" class="boton boton-primario mt-4">Más Detalles</a>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-propiedad">
+                        <img src="https://images.unsplash.com/photo-1628101676644-84c6c2152648?auto=format&fit=crop&w=600&q=80" alt="Finca con mucha vegetación">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">Finca con Piscina y Extensas Zonas Verdes</h3>
+                            <p class="text-gray-600 mb-4">Cali, Valle del Cauca</p>
+                            <div class="tarjeta-precio">$750,000,000 COP</div>
+                            <p class="tarjeta-meta mt-2">4 habs | 4 baños | 300 m²</p>
+                            <a href="#" class="boton boton-primario mt-4">Más Detalles</a>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-propiedad">
+                        <img src="https://images.unsplash.com/photo-1578335028590-f2c27771e847?auto=format&fit=crop&w=600&q=80" alt="Cocina moderna de apartamento">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">Apartamento Familiar en Zona Residencial</h3>
+                            <p class="text-gray-600 mb-4">Barranquilla, Atlántico</p>
+                            <div class="tarjeta-precio">$620,000,000 COP</div>
+                            <p class="tarjeta-meta mt-2">3 habs | 2 baños | 95 m²</p>
+                            <a href="#" class="boton boton-primario mt-4">Más Detalles</a>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-propiedad">
+                        <img src="https://images.unsplash.com/photo-1600607687841-f67f2e1e075c?auto=format&fit=crop&w=600&q=80" alt="Casa antigua con potencial">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">Gran Oportunidad: Casa para Remodelar</h3>
+                            <p class="text-gray-600 mb-4">Bucaramanga, Santander</p>
+                            <div class="tarjeta-precio">$350,000,000 COP</div>
+                            <p class="tarjeta-meta mt-2">3 habs | 2 baños | 150 m²</p>
+                            <a href="#" class="boton boton-primario mt-4">Más Detalles</a>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-propiedad">
+                        <img src="https://images.unsplash.com/photo-1595180633100-c971034c4419?auto=format&fit=crop&w=600&q=80" alt="Terraza de Penthouse">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">Penthouse de Lujo con Terraza Privada</h3>
+                            <p class="text-gray-600 mb-4">Bogotá D.C. (Norte)</p>
+                            <div class="tarjeta-precio">$1,500,000,000 COP</div>
+                            <p class="tarjeta-meta mt-2">3 habs | 4 baños | 210 m²</p>
+                            <a href="#" class="boton boton-primario mt-4">Más Detalles</a>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-propiedad">
+                        <img src="https://images.unsplash.com/photo-1540302251147-7925c4043b2f?auto=format&fit=crop&w=600&q=80" alt="Terreno para construcción">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">Lote Urbano para Desarrollo Residencial</h3>
+                            <p class="text-gray-600 mb-4">Pereira, Risaralda</p>
+                            <div class="tarjeta-precio">$250,000,000 COP</div>
+                            <p class="tarjeta-meta mt-2">N/A habs | N/A baños | 500 m²</p>
+                            <a href="#" class="boton boton-primario mt-4">Más Detalles</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="text-center mt-12">
+                    <button class="boton boton-primario text-lg shadow-md">Cargar Más Propiedades</button>
+                </div>
             </div>
         </section>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
-        <div class="container text-center">
-            <p>&copy; 2024 Daily Soccer. Todos los derechos reservados.</p>
-            <p class="mt-2 text-sm text-gray-400">Hecho con pasión por el fútbol.</p>
+    <footer id="pie-de-pagina" class="py-8">
+        <div class="contenedor text-center">
+            <p>&copy; 2025 Inmobiliaria Market House. Todos los derechos reservados.</p>
+            <p class="text-sm mt-2">Diseñado con <span class="text-red-400"></span> para tu futuro hogar.</p>
         </div>
     </footer>
-
     <script>
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-
-        // Muestra el menú móvil al hacer clic en el botón de hamburguesa
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('-translate-x-full');
+        const botonHamburguesa = document.getElementById('boton-hamburguesa');
+        const menuPrincipal = document.getElementById('menu-principal');
+        
+        botonHamburguesa.addEventListener('click', () => {
+            
+            menuPrincipal.classList.toggle('menu-activo');
+            
+            menuPrincipal.classList.toggle('hidden'); 
         });
-
-        // Oculta el menú móvil al hacer clic en la "X"
-        closeMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('-translate-x-full');
-        });
-
-        // Función para cerrar el menú al hacer clic en un enlace (para mejor experiencia de usuario)
-        function closeMenu() {
-            mobileMenu.classList.add('-translate-x-full');
-        }
     </script>
+
 </body>
 </html>
