@@ -1,172 +1,296 @@
-<!DOCTYPE html>
+<!DOCTYPE dabb:html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Soccer</title>
+    <title>Inmobiliaria MarketHouse | Blog Inmobiliario</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
+        
+        :root {
+            --color-primario: #0A2E5D; 
+            --color-secundario: #F0F4F8;
+            --color-acento: #FFC107;
+            --color-texto: #333333; 
+            --color-blanco: #FFFFFF;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5;
-            color: #1a202c;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-texto);
+            line-height: 1.6;
         }
-        .container {
+        
+        .contenedor {
+            width: 90%;
             max-width: 1200px;
-            margin: auto;
-            padding: 1rem;
+            margin: 0 auto;
         }
-        .news-card {
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        
+        #encabezado-principal {
+            background-color: var(--color-blanco);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
-        .news-card:hover {
+
+        .navegacion-barra {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        #logo {
+            font-size: 1.5rem; 
+            font-weight: 700;
+            color: var(--color-primario);
+            text-decoration: none;
+        }
+
+        #menu-principal a {
+            color: var(--color-primario);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        #menu-principal a:hover {
+            color: var(--color-acento);
+        }
+        
+        #boton-hamburguesa {
+            display: none; 
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        
+        .boton {
+            display: inline-block;
+            padding: 0.75rem 1.5rem; 
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .boton-primario {
+            background-color: var(--color-acento);
+            color: var(--color-texto);
+        }
+
+        .boton-primario:hover {
+            background-color: #e6ac00; 
+        }
+
+        .grilla-articulos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tarjeta-articulo {
+            background-color: var(--color-blanco);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tarjeta-articulo:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
-        /* Nueva clase para la sección de portada (hero) */
-        .hero-bg {
-            background-image: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+
+        .tarjeta-articulo img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
         }
-        .btn-primary {
-            background-color: #1e3a8a;
-            color: #ffffff;
-            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+        
+        .tarjeta-cuerpo {
+            padding: 1.5rem;
         }
-        .btn-primary:hover {
-            background-color: #1e40af;
-            transform: translateY(-2px);
+
+        .tarjeta-titulo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-primario);
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
         }
+
+        .tarjeta-meta {
+            font-size: 0.875rem; 
+            color: #6B7280; 
+            margin-bottom: 1rem;
+        }
+        
+        #pie-de-pagina {
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+        }
+        
+        @media (max-width: 768px) {
+            .navegacion-barra {
+                position: relative;
+            }
+
+            #menu-principal {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px; 
+                left: 0;
+                width: 100%;
+                background-color: var(--color-blanco);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+            
+            #menu-principal.menu-activo {
+                display: flex;
+            }
+
+            #menu-principal a {
+                padding: 1rem;
+                text-align: center;
+                border-top: 1px solid var(--color-secundario);
+            }
+
+            #boton-hamburguesa {
+                display: block; 
+            }
+        }
+
     </style>
 </head>
 <body class="bg-gray-100">
 
-    <!-- Sección de Portada (Hero Section) -->
-    <header class="hero-bg text-white shadow-lg py-20 md:py-32">
-        <div class="container flex flex-col justify-center items-center text-center">
-            <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4">Daily Soccer</h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-2xl">Todo lo que necesitas saber del fútbol mundial, actualizado al instante. Noticias, fichajes, y análisis de las ligas más importantes.</p>
-            <a href="#ultimas-noticias" class="btn-primary py-3 px-8 rounded-full font-semibold shadow-lg">Ver Últimas Noticias</a>
+    <header id="encabezado-principal">
+        <div class="contenedor navegacion-barra">
+            <a href="/inicio.html" id="logo">MarketHouse</a> 
+            
+            <nav id="menu-principal" class="hidden md:flex space-x-4">
+                <a href="/propiedades.html">Propiedades</a>
+                <a href="/servicios.html">Servicios</a>
+                <a href="/contacto.html">Contacto</a> 
+                <a href="/blog.html">Blog</a> </nav>
+            
+            <button id="boton-hamburguesa" class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
         </div>
     </header>
+    <main>
 
-    <!-- Main Content -->
-    <main class="container py-8">
-
-        <!-- Sección de Últimas Noticias -->
-        <section id="ultimas-noticias" class="mb-12">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Últimas Noticias</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Tarjeta de Noticia 1 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
-                    <img src="https://placehold.co/600x400/1e293b/ffffff?text=Fichaje+Estrella" alt="Fichaje de jugador estrella" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">¡Bomba en el mercado! Fichaje de última hora sacude a Europa</h3>
-                        <p class="text-gray-600 text-sm">El delantero estrella ha sido presentado oficialmente en su nuevo club. Todos los detalles de la negociación y su primer día de entrenamiento.</p>
-                    </div>
-                </article>
-                <!-- Tarjeta de Noticia 2 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
-                    <img src="https://placehold.co/600x400/1e293b/ffffff?text=Partido+Final" alt="Celebración del título de un equipo" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Un gol agónico le da el título de la liga al equipo sorpresa</h3>
-                        <p class="text-gray-600 text-sm">El partido final de la temporada tuvo un desenlace de película. Analizamos el desempeño del campeón y el futuro del subcampeón.</p>
-                    </div>
-                </article>
-                <!-- Tarjeta de Noticia 3 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
-                    <img src="https://placehold.co/600x400/1e293b/ffffff?text=Lesion+Gravisima" alt="Jugador lesionado en el campo" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Preocupación en la selección: Jugador clave sufre una grave lesión</h3>
-                        <p class="text-gray-600 text-sm">Una lesión inesperada deja al crack fuera de la próxima convocatoria. ¿Quién lo reemplazará en el once titular?</p>
-                    </div>
-                </article>
+        <section id="banner-blog" class="bg-gray-50 py-16 border-b border-gray-200">
+            <div class="contenedor text-center">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">El Blog de MarketHouse</h1>
+                <p class="text-xl max-w-3xl mx-auto text-gray-600">Noticias, tendencias y consejos expertos para comprar, vender o invertir en bienes raíces.</p>
             </div>
         </section>
 
-        <!-- Sección de Ligas Populares -->
-        <section id="ligas-populares" class="mb-12">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Ligas Populares</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Tarjeta de Liga 1 -->
-                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center news-card">
-                    <img src="https://placehold.co/100x100/1e293b/ffffff?text=Liga" alt="Icono de la Premier League" class="w-24 h-24 mb-4 rounded-full">
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Premier League</h3>
-                    <p class="text-sm text-gray-600">El fútbol inglés no da respiro. ¡Checa los últimos resultados y la tabla de posiciones!</p>
-                </div>
-                <!-- Tarjeta de Liga 2 -->
-                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center news-card">
-                    <img src="https://placehold.co/100x100/1e293b/ffffff?text=Liga" alt="Icono de La Liga" class="w-24 h-24 mb-4 rounded-full">
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">La Liga</h3>
-                    <p class="text-sm text-gray-600">Todo sobre los clásicos y la lucha por el campeonato en el fútbol español.</p>
-                </div>
-                <!-- Tarjeta de Liga 3 -->
-                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center news-card">
-                    <img src="https://placehold.co/100x100/1e293b/ffffff?text=Liga" alt="Icono de la Serie A" class="w-24 h-24 mb-4 rounded-full">
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Serie A</h3>
-                    <p class="text-sm text-gray-600">La magia del fútbol italiano sigue viva. ¡No te pierdas los resúmenes de los partidos!</p>
-                </div>
-                <!-- Tarjeta de Liga 4 -->
-                <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center news-card">
-                    <img src="https://placehold.co/100x100/1e293b/ffffff?text=Liga" alt="Icono de la Bundesliga" class="w-24 h-24 mb-4 rounded-full">
-                    <h3 class="text-lg font-bold text-gray-900 mb-2">Bundesliga</h3>
-                    <p class="text-sm text-gray-600">Los goleadores y las sorpresas de la liga alemana. ¡Descubre quién lidera la tabla!</p>
+        <section id="articulos-recientes" class="py-16">
+            <div class="contenedor">
+                <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">Tendencias y Consejos Recientes</h2>
+                
+                <div class="grilla-articulos">
+                    
+                    <div class="tarjeta-articulo">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=600&q=80" alt="Pareja mirando planos de casa">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">5 Pasos Esenciales para Comprar tu Primera Vivienda</h3>
+                            <p class="tarjeta-meta">Por Juan Pérez | 15 de Octubre, 2025</p>
+                            <p class="text-gray-700 mb-4">Desde el ahorro inicial hasta la firma de las escrituras: te guiamos por el proceso sin complicaciones.</p>
+                            <a href="/noticias.html" class="boton boton-primario text-sm">Leer Artículo</a>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-articulo">
+                        <img src="https://images.unsplash.com/photo-1554995207-c18c69ef1e06?auto=format&fit=crop&w=600&q=80" alt="Gráfico financiero y llaves de casa">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">¿Cómo Afectan las Tasas de Interés al Mercado Inmobiliario?</h3>
+                            <p class="tarjeta-meta">Por Equipo MarketHouse | 10 de Octubre, 2025</p>
+                            <p class="text-gray-700 mb-4">Analizamos la relación entre las decisiones financieras y el costo de las hipotecas en tu ciudad.</p>
+                            <a href="#" class="boton boton-primario text-sm">Leer Artículo</a>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-articulo">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Interior moderno de apartamento">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">La Inversión Inteligente: El Auge de los Apartamentos de 1 y 2 Habitaciones</h3>
+                            <p class="tarjeta-meta">Por Ana López | 01 de Octubre, 2025</p>
+                            <p class="text-gray-700 mb-4">Descubre por qué las unidades compactas son la mejor opción para inversionistas en 2025.</p>
+                            <a href="#" class="boton boton-primario text-sm">Leer Artículo</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tarjeta-articulo">
+                        <img src="https://images.unsplash.com/photo-1493770732857-41b4e3639943?auto=format&fit=crop&w=600&q=80" alt="Casa familiar en día soleado">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">Mejora el Valor de tu Casa: Inversiones que Realmente Cuentan</h3>
+                            <p class="tarjeta-meta">Por Equipo MarketHouse | 25 de Septiembre, 2025</p>
+                            <p class="text-gray-700 mb-4">Pequeñas remodelaciones y mejoras que garantizan un mejor precio de venta en el mercado actual.</p>
+                            <a href="#" class="boton boton-primario text-sm">Leer Artículo</a>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-articulo">
+                        <img src="https://images.unsplash.com/photo-1543789396-e2439c2c62c0?auto=format&fit=crop&w=600&q=80" alt="Dispositivos inteligentes en una sala">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">El Hogar Inteligente: Tecnología que Busca el Comprador Moderno</h3>
+                            <p class="tarjeta-meta">Por Ricardo Soto | 18 de Septiembre, 2025</p>
+                            <p class="text-gray-700 mb-4">Sistemas de seguridad, eficiencia energética y asistentes virtuales que impulsan la demanda.</p>
+                            <a href="#" class="boton boton-primario text-sm">Leer Artículo</a>
+                        </div>
+                    </div>
+                    
+                    <div class="tarjeta-articulo">
+                        <img src="https://images.unsplash.com/photo-1560518883-ef1e712a4f49?auto=format&fit=crop&w=600&q=80" alt="Agente inmobiliario dando la mano">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">¿Por Qué Necesitas un Agente Inmobiliario Hoy Más que Nunca?</h3>
+                            <p class="tarjeta-meta">Por Equipo MarketHouse | 12 de Septiembre, 2025</p>
+                            <p class="text-gray-700 mb-4">La importancia de la asesoría profesional en la negociación y documentación legal de una venta.</p>
+                            <a href="#" class="boton boton-primario text-sm">Leer Artículo</a>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </section>
 
-        <!-- Sección de Mercado de Fichajes -->
-        <section id="mercado-de-fichajes" class="mb-12">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">Mercado de Fichajes</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Noticia de Fichaje 1 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
-                    <img src="https://placehold.co/600x300/1e293b/ffffff?text=Fichaje+1" alt="Jugador firmando contrato" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">El crack de moda llega a la capital española</h3>
-                        <p class="text-gray-600 text-sm">El club blanco se hace con los servicios de una de las promesas más codiciadas. ¿Será el fichaje del año?</p>
-                    </div>
-                </article>
-                <!-- Noticia de Fichaje 2 -->
-                <article class="bg-white rounded-xl shadow-lg overflow-hidden news-card">
-                    <img src="https://placehold.co/600x300/1e293b/ffffff?text=Fichaje+2" alt="Jugador saludando a la afición" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Sorpresiva salida de un ídolo: se va a la liga árabe</h3>
-                        <p class="text-gray-600 text-sm">Después de años en el club, el capitán toma la decisión de irse por un proyecto millonario. La afición está dividida.</p>
-                    </div>
-                </article>
-            </div>
-        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
-        <div class="container text-center">
-            <p>&copy; 2024 Daily Soccer. Todos los derechos reservados.</p>
-            <p class="mt-2 text-sm text-gray-400">Hecho con pasión por el fútbol.</p>
+    <footer id="pie-de-pagina" class="py-8">
+        <div class="contenedor text-center">
+            <p>&copy; 2025 Inmobiliaria Market House. Todos los derechos reservados.</p>
+            <p class="text-sm mt-2">Diseñado con <span class="text-red-400"></span> para tu futuro hogar.</p>
         </div>
     </footer>
-    
-    <!-- El menú móvil y el JavaScript se eliminan del hero section y se mantienen al final del body -->
     <script>
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
 
-        // Muestra el menú móvil al hacer clic en el botón de hamburguesa
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('-translate-x-full');
+        const botonHamburguesa = document.getElementById('boton-hamburguesa');
+        const menuPrincipal = document.getElementById('menu-principal');
+        
+        botonHamburguesa.addEventListener('click', () => {
+            
+            menuPrincipal.classList.toggle('menu-activo');
+            
+            menuPrincipal.classList.toggle('hidden'); 
         });
-
-        // Oculta el menú móvil al hacer clic en la "X"
-        closeMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('-translate-x-full');
-        });
-
-        // Función para cerrar el menú al hacer clic en un enlace (para mejor experiencia de usuario)
-        function closeMenu() {
-            mobileMenu.classList.add('-translate-x-full');
-        }
     </script>
+
 </body>
 </html>
