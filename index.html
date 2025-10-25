@@ -1,195 +1,305 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Sport</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="inicio.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inmobiliaria MarketHouse | Tu Hogar Ideal te Espera</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        
+        :root {
+            --color-primario: #0A2E5D; 
+            --color-secundario: #F0F4F8;
+            --color-acento: #FFC107;
+            --color-texto: #333333; 
+            --color-blanco: #FFFFFF;
+        }
+
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+        
+        .contenedor {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        #encabezado-principal {
+            background-color: var(--color-blanco);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .navegacion-barra {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        #logo {
+            font-size: 1.5rem; 
+            font-weight: 700;
+            color: var(--color-primario);
+            text-decoration: none;
+        }
+
+        #menu-principal a {
+            color: var(--color-primario);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        #menu-principal a:hover {
+            color: var(--color-acento);
+        }
+        
+        
+        #boton-hamburguesa {
+            display: none; 
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        
+        #seccion-bienvenida {
+            background-image: linear-gradient(rgba(10, 46, 93, 0.7), rgba(10, 46, 93, 0.7)), url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--color-blanco);
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .contenido-bienvenida h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .grilla-propiedades {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tarjeta-propiedad {
+            background-color: var(--color-blanco);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tarjeta-propiedad:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .tarjeta-propiedad img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .tarjeta-cuerpo {
+            padding: 1.5rem;
+        }
+
+        .tarjeta-titulo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-primario);
+            margin-bottom: 0.5rem;
+        }
+        
+        .tarjeta-precio {
+            font-size: 1.5rem; 
+            font-weight: 700;
+            color: var(--color-acento);
+            margin-bottom: 1rem;
+        }
+        
+        .boton {
+            display: inline-block;
+            padding: 0.75rem 1.5rem; /* 12px 24px */
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .boton-primario {
+            background-color: var(--color-acento);
+            color: var(--color-texto);
+        }
+
+        .boton-primario:hover {
+            background-color: #e6ac00; 
+        }
+        
+        #pie-de-pagina {
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+        }
+        
+        @media (max-width: 768px) {
+            .navegacion-barra {
+                position: relative;
+            }
+
+            #menu-principal {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px; 
+                left: 0;
+                width: 100%;
+                background-color: var(--color-blanco);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+            
+            
+            #menu-principal.menu-activo {
+                display: flex;
+            }
+
+            #menu-principal a {
+                padding: 1rem;
+                text-align: center;
+                border-top: 1px solid var(--color-secundario);
+            }
+
+            #boton-hamburguesa {
+                display: block; 
+            }
+
+            .contenido-bienvenida h1 {
+                font-size: 2.2rem; /* 35px */
+            }
+        }
+
+    </style>
 </head>
+<body class="bg-gray-100">
 
-<body>
-  
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="container">
-      <a href="inicio.html" class="nav-link">Inicio</a>
-      <a href="noticias.html" class="nav-link">Noticias</a>
-      <a href="nosotros.html" class="nav-link">Nosotros</a>
-      <a href="#" class="nav-link" id="abrirModal">Registrarse / Iniciar sesión</a>
-    </div>
-  </nav>
-  
-  <!-- Hero -->
-  <header class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Daily Sport</h1>
-      <p>Tu dosis diaria de noticias deportivas</p>
-    </div>
-  </header>
-  
-  <main class="container">
-    
-    <!-- Noticias -->
-    <section class="section-card">
-      <h2>Noticias Destacadas</h2>
-      <div class="quote-box">
-        <p><b>¡Bomba en el mercado! Fichaje de última hora sacude a Europa</b></p>
-        <hr>
-        <small>El delantero estrella ha sido presentado oficialmente en su nuevo club. Todos los detalles de la negociación y su primer día de entrenamiento.</small>
-      </div>
-      <div class="quote-box">
-        <p><b>Un gol agónico le da el título de la liga al equipo sorpresa</b></p>
-        <hr>
-        <small>El partido final de la temporada tuvo un desenlace de película. Analizamos el desempeño del campeón y el futuro del subcampeón.</small>
-      </div>
-      <div class="quote-box">
-        <p><b>Sorpresiva salida de un ídolo: se va a la liga árabe</b></p>
-        <hr>
-        <small>Después de años en el club, el capitán toma la decisión de irse por un proyecto millonario. La afición está dividida.</small>
-      </div>
-      <div class="quote-box">
-        <p><b>El crack de moda llega a la capital española</b></p>
-        <hr>
-        <small>El crack de moda llega a la capital española
-          El club blanco se hace con los servicios de una de las promesas más codiciadas. ¿Será el fichaje del año?</small>
-      </div>
-    </section>
-    
-    <!-- Opiniones -->
-    <section class="section-card">
-      <h2>Análisis y Opinión</h2>
-      <div class="quote-box">
-        <p>"Daily Sport ofrece una perspectiva única del juego."</p>
-        <cite>- Ana Rodríguez</cite>
-      </div>
-      <div class="quote-box">
-        <p>"Sus artículos son esenciales para cualquier aficionado."</p>
-        <cite>- Javier García</cite>
-      </div>
-    </section>
-    
-    <!-- Partidos Recientes -->
-    <section class="section-card">
-      <h2>Partidos Recientes</h2>
-      <div class="matches-table-container">
-        <table class="matches-table">
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Equipo Local</th>
-              <th>Resultado</th>
-              <th>Equipo Visitante</th>
-              <th>Competición</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>01/10/2025</td>
-              <td class="team-name">Manchester City</td>
-              <td class="score">
-                <span class="score-home">3</span>
-                <span class="score-separator">-</span>
-                <span class="score-away">1</span>
-              </td>
-              <td class="team-name">Liverpool</td>
-              <td class="competition">Premier League</td>
-            </tr>
-            <tr>
-              <td>30/09/2025</td>
-              <td class="team-name">Bayern Munich</td>
-              <td class="score">
-                <span class="score-home">2</span>
-                <span class="score-separator">-</span>
-                <span class="score-away">2</span>
-              </td>
-              <td class="team-name">Borussia Dortmund</td>
-              <td class="competition">Bundesliga</td>
-            </tr>
-            <tr>
-              <td>29/09/2025</td>
-              <td class="team-name">Real Madrid</td>
-              <td class="score">
-                <span class="score-home">4</span>
-                <span class="score-separator">-</span>
-                <span class="score-away">0</span>
-              </td>
-              <td class="team-name">Atlético Madrid</td>
-              <td class="competition">La Liga</td>
-            </tr>
-            <tr>
-              <td>28/09/2025</td>
-              <td class="team-name">Paris Saint-Germain</td>
-              <td class="score">
-                <span class="score-home">1</span>
-                <span class="score-separator">-</span>
-                <span class="score-away">3</span>
-              </td>
-              <td class="team-name">Marseille</td>
-              <td class="competition">Ligue 1</td>
-            </tr>
-            <tr>
-              <td>27/09/2025</td>
-              <td class="team-name">Juventus</td>
-              <td class="score">
-                <span class="score-home">2</span>
-                <span class="score-separator">-</span>
-                <span class="score-away">1</span>
-              </td>
-              <td class="team-name">AC Milan</td>
-              <td class="competition">Serie A</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-    
-    <!-- Premium -->
-    <section class="section-card premium-section">
-      <h2>Daily Sport Premium</h2>
-      <ul>
-        <li>Reportajes exclusivos</li>
-        <li>Experiencia sin anuncios</li>
-        <li>Acceso anticipado a contenido</li>
-      </ul>
-    </section>
-    
-  </main>
-  
-  <!-- Footer -->
-  <footer class="footer">
-    <p>Contacto: info@dailysport.com | Tel: +34 123 456 789</p>
-    <p>Síguenos: Facebook | Twitter | Instagram</p>
-    <p><a href="trat_datos.html">Tratamiento de datos</a></p>
-  </footer>
-  
-  <!-- Modal -->
-  <div class="modal" id="authModal">
-    <div class="modal-content">
-      <span class="close" id="closeModal">&times;</span>
-      <div class="tabs">
-        <!--<button class="tab active" id="registerTab">Registrarse</button>-->
-       <!-- <button class="tab" id="loginTab">Iniciar sesión</button>-->
-      </div>
-      <form id="registerForm" class="form active">
-        <input type="text" placeholder="Nombre completo" required>
-        <input type="email" placeholder="Correo electrónico" required>
-        <input type="password" placeholder="Contraseña" required>
-        <button type="submit">Registrarse</button>
-      </form>
-      <!--
-      <form id="loginForm" class="form">
-        <input type="email" placeholder="Correo electrónico" required>
-        <input type="password" placeholder="Contraseña" required>
-        <button type="submit">Ingresar</button>
-      </form>-->
-    </div>
-  </div>
-  
-  <script type="text/javascript" charset="utf-8" src="inicio.js"></script>
-  
+    <header id="encabezado-principal">
+        <div class="contenedor navegacion-barra">
+            <a href="#" id="logo">MarketHouse</a>
+            
+            <nav id="menu-principal" class="hidden md:flex space-x-4">
+                <a href="/propiedades.html">Propiedades</a>
+                <a href="/servicios.html">Servicios</a>
+                <a href="/contacto.html">Contacto</a>
+                <a href="/blog.html">Blog</a>
+            </nav>
+            
+            <button id="boton-hamburguesa" class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="seccion-bienvenida">
+            <div class="contenido-bienvenida p-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Encuentra la propiedad de tus sueños</h1>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8">Expertos en el sector inmobiliario para ayudarte en cada paso.</p>
+                <a href="#propiedades-destacadas" class="boton boton-primario text-lg">Ver Propiedades</a>
+            </div>
+        </section>
+
+        <section id="propiedades-destacadas" class="py-16 bg-gray-50">
+            <div class="contenedor">
+                <h2 class="text-3xl font-bold text-center mb-10 text-gray-800">Propiedades Destacadas</h2>
+                
+                <div class="grilla-propiedades">
+                    <div class="tarjeta-propiedad">
+                        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80" alt="Casa moderna con piscina">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">Villa de Lujo en la Montaña</h3>
+                            <p class="text-gray-600 mb-4">Anapoima, Cundinamarca</p>
+                            <div class="tarjeta-precio">$1,200,000,000 COP</div>
+                            <p class="text-sm text-gray-500 mt-2">4 habs | 5 baños | 350 m²</p>
+                            <a href="#" class="boton boton-primario mt-4">Más Detalles</a>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-propiedad">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Apartamento moderno en la ciudad">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">Apartamento Moderno en Chapinero</h3>
+                            <p class="text-gray-600 mb-4">Bogotá D.C.</p>
+                            <div class="tarjeta-precio">$850,000,000 COP</div>
+                            <p class="text-sm text-gray-500 mt-2">3 habs | 3 baños | 120 m²</p>
+                            <a href="#" class="boton boton-primario mt-4">Más Detalles</a>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-propiedad">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" alt="Casa campestre con jardín">
+                        <div class="tarjeta-cuerpo">
+                            <h3 class="tarjeta-titulo">Casa Campestre Familiar</h3>
+                            <p class="text-gray-600 mb-4">La Calera, Cundinamarca</p>
+                            <div class="tarjeta-precio">$980,000,000 COP</div>
+                            <p class="text-sm text-gray-500 mt-2">5 habs | 4 baños | 280 m²</p>
+                            <a href="#" class="boton boton-primario mt-4">Más Detalles</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="py-16">
+            <div class="contenedor text-center">
+                 <h2 class="text-3xl font-bold text-center mb-4 text-gray-800">¿Interesado en una propiedad?</h2>
+                 <p class="max-w-xl mx-auto mb-8">Nuestro equipo de expertos está listo para asesorarte. ¡Contáctanos hoy mismo!</p>
+                 <a href="mailto:duvanljimenez42@gmail.com" class="boton boton-primario text-lg">Enviar un Correo</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="pie-de-pagina" class="py-8">
+        <div class="contenedor text-center">
+            <p>&copy; 2025 Inmobiliaria Market House. Todos los derechos reservados.</p>
+            <p class="text-sm mt-2">Diseñado con  para tu futuro hogar.</p>
+        </div>
+    </footer>
+
+    <script>
+        
+        const botonHamburguesa = document.getElementById('boton-hamburguesa');
+        const menuPrincipal = document.getElementById('menu-principal');
+        
+        botonHamburguesa.addEventListener('click', () => {
+            
+            menuPrincipal.classList.toggle('menu-activo');
+            
+            menuPrincipal.classList.toggle('hidden');
+        });
+    </script>
+
 </body>
-
 </html>
