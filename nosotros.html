@@ -1,71 +1,279 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Sport</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="nosotros.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarketHouse Blog | 5 Pasos Esenciales para Comprar tu Primera Vivienda</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        
+        :root {
+            --color-primario: #0A2E5D; 
+            --color-secundario: #F0F4F8;
+            --color-acento: #FFC107;
+            --color-texto: #333333; 
+            --color-blanco: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+        
+        .contenedor {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        #encabezado-principal {
+            background-color: var(--color-blanco);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .navegacion-barra {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        #logo {
+            font-size: 1.5rem; 
+            font-weight: 700;
+            color: var(--color-primario);
+            text-decoration: none;
+        }
+
+        #menu-principal a {
+            color: var(--color-primario);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        #menu-principal a:hover {
+            color: var(--color-acento);
+        }
+        
+        #boton-hamburguesa {
+            display: none; 
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        
+        .boton {
+            display: inline-block;
+            padding: 0.75rem 1.5rem; 
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .boton-primario {
+            background-color: var(--color-acento);
+            color: var(--color-texto);
+        }
+
+        .boton-primario:hover {
+            background-color: #e6ac00; 
+        }
+        
+        .contenido-articulo {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        
+        .contenido-articulo h2 {
+            font-size: 2.25rem; 
+            font-weight: 700;
+            color: var(--color-primario);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--color-acento);
+            padding-bottom: 0.5rem;
+        }
+
+        .contenido-articulo h3 {
+            font-size: 1.5rem; 
+            font-weight: 700;
+            color: var(--color-primario);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contenido-articulo p, .contenido-articulo ul {
+            margin-bottom: 1rem;
+        }
+        
+        .contenido-articulo ul {
+            list-style: disc;
+            padding-left: 2rem;
+        }
+
+        .resaltado {
+            color: var(--color-acento);
+            font-weight: 600;
+        }
+        
+        #pie-de-pagina {
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+        }
+        
+        @media (max-width: 768px) {
+            .navegacion-barra {
+                position: relative;
+            }
+
+            #menu-principal {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px; 
+                left: 0;
+                width: 100%;
+                background-color: var(--color-blanco);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+            
+            #menu-principal.menu-activo {
+                display: flex;
+            }
+
+            #menu-principal a {
+                padding: 1rem;
+                text-align: center;
+                border-top: 1px solid var(--color-secundario);
+            }
+
+            #boton-hamburguesa {
+                display: block; 
+            }
+        }
+
+    </style>
 </head>
+<body class="bg-gray-100">
 
-<body>
-  
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="container">
-      <a href="inicio.html" class="nav-link">Inicio</a>
-      <a href="noticias.html" class="nav-link">Noticias</a>
-      <a href="nosotros.html" class="nav-link">Nosotros</a>
-      <a href="#" class="nav-link" id="abrirModal">Registrarse / Iniciar sesión</a>
-    </div>
-  </nav>
-  
-  
-  <main class="container">
+    <header id="encabezado-principal">
+        <div class="contenedor navegacion-barra">
+            <a href="index.html" id="logo">MarketHouse</a> 
+            
+            <nav id="menu-principal" class="hidden md:flex space-x-4">
+                <a href="/propiedades.html">Propiedades</a>
+                <a href="/servicios.html">Servicios</a>
+                <a href="next.html">Contacto</a> 
+                <a href="blog.html">Blog</a> 
+            </nav>
+            
+            <button id="boton-hamburguesa" class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </header>
+    <main>
+
+        <article id="articulo-completo" class="py-10 md:py-16">
+            <div class="contenedor">
+                <div class="contenido-articulo bg-white p-6 md:p-10 rounded-lg shadow-lg">
+                    
+                    <h1 class="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-4">
+                        5 Pasos Esenciales para Comprar tu Primera Vivienda
+                    </h1>
+                    
+                    <p class="text-center text-gray-500 mb-6 border-b pb-4">
+                        Por **Juan Pérez** | 15 de Octubre, 2025 | Categoría: Guías de Compra
+                    </p>
+                    
+                    <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80" 
+                         alt="Pareja mirando planos de casa" 
+                         class="w-full h-auto rounded-lg mb-8 shadow-md">
+
+                    <p class="text-lg mb-6">
+                        Comprar tu primera casa es un hito emocionante, pero puede parecer abrumador. En MarketHouse, queremos simplificar el camino. Hemos resumido el proceso en <span class="resaltado">cinco pasos clave</span> para que sepas exactamente qué esperar, desde el ahorro inicial hasta la firma final.
+                    </p>
+
+                    <h3>Paso 1: Define tu Presupuesto y Preaprobación Financiera</h3>
+                    <p>
+                        Antes de enamorarte de una propiedad, debes saber cuánto puedes pagar. Esto va más allá de un cálculo rápido; implica revisar tus ingresos, deudas y, lo más importante, obtener una <span class="resaltado">preaprobación hipotecaria</span>. Este documento te indica el monto máximo de préstamo al que accedes y te da una ventaja al negociar.
+                    </p>
+                    <ul>
+                        <li><span class="font-semibold">Ahorro:</span> Calcula cuánto necesitas para la cuota inicial y los gastos de cierre.</li>
+                        <li><span class="font-semibold">Preaprobación:</span> Comunícate con tu banco para obtener este requisito indispensable.</li>
+                    </ul>
+
+                    <h3>Paso 2: Determina tus Prioridades y Ubicación Ideal</h3>
+                    <p>
+                        ¿Apartamento o casa? ¿Ciudad o suburbio? Haz una lista de lo que es negociable y lo que no. Considera la cercanía al trabajo, escuelas, hospitales y transporte público.
+                    </p>
+                    <p>
+                        **MarketHouse tip:** Usa nuestra sección de <a href="inicio_market_house.html#propiedades-destacadas" class="resaltado hover:underline">Propiedades</a> para filtrar por zonas y establecer un rango de precios que se ajuste a tu Paso 1.
+                    </p>
+
+                    <h3>Paso 3: Busca y Selecciona un Agente Inmobiliario de Confianza</h3>
+                    <p>
+                        Un agente (como los expertos de MarketHouse, que puedes contactar <a href="contacto_markethouse.html" class="resaltado hover:underline">aquí</a>) es tu mejor aliado. Ellos tienen acceso a listados exclusivos, conocen el valor real de mercado y te representarán durante la negociación.
+                    </p>
+                    
+                    <h3>Paso 4: Haz una Oferta y Prepara la Documentación Legal</h3>
+                    <p>
+                        Una vez que encuentras la casa perfecta, tu agente te ayudará a redactar una oferta competitiva. Si es aceptada, el proceso se centra en la documentación legal, la tasación de la propiedad y la inspección técnica. Es vital no saltarse la <span class="resaltado">inspección</span> para evitar sorpresas futuras.
+                    </p>
+
+                    <h3>Paso 5: Cierre y Mudanza</h3>
+                    <p>
+                        El "cierre" es el día en que firmas los documentos finales y la propiedad cambia de dueño. Después de este paso, que gestionaremos con la máxima transparencia, ¡recibes las llaves! Es el momento de planificar tu mudanza y comenzar a disfrutar de tu nuevo hogar.
+                    </p>
+
+                    <p class="mt-8 italic text-center text-gray-600">
+                        ¿Listo para dar el primer paso? ¡Estamos aquí para ayudarte!
+                    </p>
+                    
+                    <div class="text-center mt-6">
+                        <a href="contacto_markethouse.html" class="boton boton-primario text-lg">Contacta a un Asesor Hoy</a>
+                    </div>
+
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <footer id="pie-de-pagina" class="py-8">
+        <div class="contenedor text-center">
+            <p>&copy; 2025 Inmobiliaria Market House. Todos los derechos reservados.</p>
+            <p class="text-sm mt-2">Diseñado con <span class="text-red-400"></span> para tu futuro hogar.</p>
+        </div>
+    </footer>
+    <script>
     
-    <!-- Noticias -->
-    <section class="section-card">
-      <h2>Acerca de nosotros</h2>
-      <div class="quote-box">
-        <p>
-          En Daily Sports creemos que la pasión por el fútbol no debe estar reñida con la objetividad. Por eso, nuestro compromiso es ofrecerte información imparcial, actualizada y clara sobre lo que ocurre en las principales ligas del mundo. <br><br>
+        const botonHamburguesa = document.getElementById('boton-hamburguesa');
+        const menuPrincipal = document.getElementById('menu-principal');
+        
+        botonHamburguesa.addEventListener('click', () => {
+            
+            menuPrincipal.classList.toggle('menu-activo');
+            
+            menuPrincipal.classList.toggle('hidden'); 
+        });
+    </script>
 
-Somos un blog deportivo independiente que se dedica a cubrir lo más relevante del fútbol internacional: resultados, resúmenes, momentos clave y noticias de último minuto. Sin rumores, sin exageraciones, sin colores. Solo los hechos, tal como suceden. <br> <br>
-
-Cubrimos competencias como la Premier League, LaLiga, Serie A, Bundesliga, Ligue 1, entre otras, con un enfoque centrado en la actualidad y el respeto por el lector. Queremos que encuentres en Daily Sports un espacio confiable para mantenerte informado cada día, sin distracciones ni inclinaciones. <br> <br>
-
-Porque el fútbol se disfruta más cuando se entiende desde todos los ángulos.
-        </p>
-      </div>
-      
-    </section>
-  </main>
-  
-  <!-- Footer -->
-  <footer class="footer">
-    <p class="p">Contacto: info@dailysport.com | Tel: +34 123 456 789</p>
-    <p class="p">Síguenos: Facebook | Twitter | Instagram</p>
-    <p><a href="trat_datos.html">Tratamiento de datos</a></p>
-  </footer>
-  
-  <!-- Modal -->
-  <div class="modal" id="authModal">
-    <div class="modal-content">
-      <span class="close" id="closeModal">&times;</span>
-      <div class="tabs">
-      </div>
-      <form id="registerForm" class="form active">
-        <input type="text" placeholder="Nombre completo" required>
-        <input type="email" placeholder="Correo electrónico" required>
-        <input type="password" placeholder="Contraseña" required>
-        <button type="submit">Registrarse</button>
-      </form>
-    </div>
-  </div>
-  
-  <script type="text/javascript" charset="utf-8" src="inicio.js"></script>
-  
 </body>
-
 </html>
