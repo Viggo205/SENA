@@ -1,170 +1,318 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ladies.com</title>
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-  <style>
-    body {
-    font-size: 15pt;
-    font-family: 'Times New Roman', Times, serif;
-    margin: 0;
-    padding: 0;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inmobiliaria MarketHouse | Contacto</title>
 
-.tit{
-    margin: 0 auto;
-}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
-header {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid black;
-    background: #D556FF;
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
+    <script src="https://cdn.tailwindcss.com"></script>
 
-h1 {
-    display: inline;
-    padding-right: 35px;
-}
+    <style>
+        
+        :root {
+            --color-primario: #0A2E5D; 
+            --color-secundario: #F0F4F8;
+            --color-acento: #FFC107;
+            --color-texto: #333333; 
+            --color-blanco: #FFFFFF;
+        }
 
-a {
-    font-size: 15px;
-    color: rgba(0, 51, 111, 1);
-    text-decoration: none;
-    padding-right: 5px;
-}
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+        
+        .contenedor {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        #encabezado-principal {
+            background-color: var(--color-blanco);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
 
-a:hover {
-    color: rgba(8, 122, 255, 1)
-}
+        .navegacion-barra {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
 
-section {
-    margin: 0 auto;
-    width: 90%;
-    height: 400px;
-    background: rgba(231, 231, 231, 1);
-    border: 1px solid black;
-    margin-bottom: 30px;/*
-    background-image: url('/Media/back.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;*/
-    border-radius: 7px;
-    animation-name: shadow;
-    animation-duration: 6s;
-    animation-iteration-count: infinite;
-    overflow: hidden;
-}
+        #logo {
+            font-size: 1.5rem; 
+            font-weight: 700;
+            color: var(--color-primario);
+            text-decoration: none;
+        }
 
-@keyframes shadow {
-    0% {
-        box-shadow: 0 0 10px 5px #000;
-    }
+        #menu-principal a {
+            color: var(--color-primario);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        #menu-principal a:hover {
+            color: var(--color-acento);
+        }
+        
+        #boton-hamburguesa {
+            display: none; 
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        
+        .boton {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem; 
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s;
+            min-width: 200px; 
+        }
+        
+        .boton-primario {
+            background-color: var(--color-acento);
+            color: var(--color-texto);
+        }
+
+        .boton-primario:hover {
+            background-color: #e6ac00; 
+            transform: translateY(-2px);
+        }
+        
+        .boton-secundario {
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+        }
+
+        .boton-secundario:hover {
+            background-color: #08244a; 
+            transform: translateY(-2px);
+        }
+
     
-    40% {
-        box-shadow: 0 0 10px #4A4A4A;
-    }
-    
-    80% {
-        box-shadow: 0 0 10px #8C8C8C;
-    }
-    
-    100% {
-        box-shadow: 0 0 10px 5px #000;
-    }
-}
+        .icono-social {
+            color: var(--color-primario);
+            transition: color 0.3s ease, transform 0.2s;
+        }
+        
+        .enlace-social:hover .icono-social {
+            color: var(--color-acento);
+            transform: scale(1.1);
+        }
+        .input-estilo {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; 
+            font-family: 'Montserrat', sans-serif;
+        }
 
-.init {
-    margin-top: 60px;
-}
+        .textarea-estilo {
+             width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; 
+            font-family: 'Montserrat', sans-serif;
+            resize: vertical;
+        }
+        
+        #pie-de-pagina {
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+        }
+        
+        @media (max-width: 768px) {
+            .navegacion-barra {
+                position: relative;
+            }
 
-div{
-    background: rgba(148, 154, 225, 1);
-    width: 100%;
-    height: 300px;
-    margin-top: 400px;
-    padding: 10px;
-}
+            #menu-principal {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px; 
+                left: 0;
+                width: 100%;
+                background-color: var(--color-blanco);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+            
+            #menu-principal.menu-activo {
+                display: flex;
+            }
 
-section:hover > div{
-    transition: .6s;
-    margin-top: 80px;
-}
+            #menu-principal a {
+                padding: 1rem;
+                text-align: center;
+                border-top: 1px solid var(--color-secundario);
+            }
 
-.init{
-    background-image: url('mario.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
+            #boton-hamburguesa {
+                display: block; 
+            }
+            
+            .botones-contacto-directo {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
 
-.lucky{
-    background-image: url('lucky.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.khalifa {
-    background-image: url('khalifa.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-
-/*zootecnia*/
-  </style>
+    </style>
 </head>
+<body class="bg-gray-100">
 
-<body>
-  <header> 
-    <nav>
-      <h1>Golden </h1>
-      <a href="#">Inicio</a>
-      <a href="#">Ciudad</a>
-      <a href="#">Iniciar sesión</a>
-    </nav>
-  </header>
-  <article>
-    <p>j</p>
-    <h1 class="tit">Scorts de la mejor calidad que te complacen sólo aquí</h1>
-    <section class="init">
-      <div>
-        <h3>anuncio #: ()</h3>
-        <p>Nombre: Mario</p>
-        <p>Edad: 17</p>
-        <p>Peso: se mide en toneladas</p>
-        <p>Precio: absurdamente barato</p>
-        <p>Características: le entra lo qr sea y no perdona nada</p>
-      </div>
-    </section>
-    <section class="lucky">
-      <div>
-        <h3>anuncio #: ()</h3>
-        <p>Nombre: Lucky</p>
-        <p>Edad: 16</p>
-        <p>Peso: unos 50kg</p>
-        <p>Precio: 300k por hora</p>
-        <p>Características:Albano con acento francés, le cabe un croissant entero</p>
-      </div>
-    </section>
-    <section class="khalifa">
-      <div>
-        <h3>anuncio #: ()</h3>
-        <p>Nombre: Mia Khalifa</p>
-        <p>Edad: 18</p>
-        <p>Peso: unos 55kg</p>
-        <p>Precio: 150k por hora</p>
-        <p>Características:Llora cuando el ex la deja y se pone depresiva</p>
-      </div>
-    </section>
-    
-    <section></section>
-    <section></section>
-    <section></section>
-  </article>
+    <header id="encabezado-principal">
+        <div class="contenedor navegacion-barra">
+            <a href="index.html" id="logo">MarketHouse</a> 
+            
+            <nav id="menu-principal" class="hidden md:flex space-x-4">
+                <a href="/propiedades.html">Propiedades</a>
+                <a href="/servicios.html">Servicios</a>
+                <a href="next.html">Contacto</a> <a href="inicios.html">Blog</a>
+            </nav>
+            
+            <button id="boton-hamburguesa" class="md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </header>
+    <main>
+
+        <section id="banner-contacto" class="bg-gray-50 py-16 border-b border-gray-200">
+            <div class="contenedor text-center">
+                <h1 class="text-4xl font-bold text-gray-800 mb-4">¿Hablamos de tu próximo hogar?</h1>
+                <p class="text-xl max-w-3xl mx-auto text-gray-600">Comunícate con nuestro equipo de administradores de la manera que prefieras.</p>
+            </div>
+        </section>
+
+        <section id="contacto-directo" class="py-16">
+            <div class="contenedor text-center">
+                <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Canales Directos de Comunicación</h2>
+                 <p class="max-w-xl mx-auto mb-10 text-gray-600">Para consultas rápidas o información inmediata sobre propiedades y servicios.</p>
+                 
+                 <div class="botones-contacto-directo flex justify-center gap-8">
+                    <a href="mailto:duvanljimenez42@gmail.com" class="boton boton-primario text-lg shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        Correo Electrónico
+                    </a>
+                    
+                    <a href="https://wa.me/573000000000" target="_blank" class="boton boton-secundario text-lg shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12.04 2.1c-5.46 0-9.9 4.44-9.9 9.9 0 1.77.46 3.45 1.35 4.95L2.1 22.02l5.03-1.33c1.47.8 3.14 1.22 4.91 1.22 5.46 0 9.9-4.44 9.9-9.9S17.5 2.1 12.04 2.1zm5.34 14.87c-.15.4-.55.53-.9.34l-3.32-1.63c-.3-.15-.65-.1-.95.05-.2.15-.46.3-.78.3-.3 0-.6-.1-.83-.24s-.54-.38-.8-.68c-.62-.7-.95-1.5-.95-2.3 0-.8.25-1.45.62-1.78.37-.34.7-.5.98-.5s.6.08.83.33c.23.23.36.56.46.77.1.2.16.4.24.6.1.2.06.35 0 .5-.1.15-.3.34-.45.5-.15.15-.3.26-.35.3-.05.04-.15.1-.05.2.1.1.23.23.4.37.53.5.97.87 1.5.87 1.05 0 1.9-.35 2.58-.96.68-.62 1.04-1.45 1.04-2.3 0-.7-.25-1.35-.65-1.95s-.95-1.1-1.6-1.5c-1.25-.8-2.65-1.25-4.1-1.25-1.55 0-2.8.4-3.7 1.2s-1.35 1.9-1.35 3.35c0 1.1.35 2.1.9 3s1.3 1.5 2.2 1.8c.2.08.4.1.6.1.3 0 .6-.05.9-.15l3.32 1.63c.3.15.53.1.7-.1.17-.2.25-.45.25-.75 0-.15-.05-.3-.15-.45z"/>
+                        </svg>
+                        WhatsApp
+                    </a>
+                 </div>
+            </div>
+        </section>
+        
+        <section id="redes-sociales" class="py-16 bg-gray-50">
+            <div class="contenedor text-center">
+                <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">Síguenos en Redes Sociales</h2>
+                <p class="max-w-xl mx-auto mb-10 text-gray-600">Mantente al tanto de las últimas propiedades, noticias del mercado y consejos.</p>
+                 
+                <div class="flex justify-center gap-10">
+                    <a href="https://facebook.com/MarketHouse" target="_blank" class="enlace-social flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icono-social h-16 w-16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.477 2 2 6.477 2 12c0 5.174 3.77 9.444 8.706 10.323V15.5H7.567V12H9.706V9.387c0-2.138 1.264-3.32 3.233-3.32 0.925 0 1.713 0.082 1.94 0.118v2.128h-1.259c-1.025 0-1.227 0.485-1.227 1.2V12h2.553l-0.414 3.5h-2.14V22.323C18.23 21.444 22 17.174 22 12c0-5.523-4.477-10-10-10z"/>
+                        </svg>
+                        <span class="mt-2 text-sm font-semibold text-gray-600">Facebook</span>
+                    </a>
+
+                    <a href="https://twitter.com/MarketHouse" target="_blank" class="enlace-social flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icono-social h-16 w-16" viewBox="0 0 24 24" fill="currentColor">
+                           <path d="M18.901 1.144h3.687l-8.086 9.388 9.407 12.356h-7.64l-5.6-7.35-6.66 7.35H1.674l8.3-9.141L1.246 1.144h7.82l4.981 6.818L18.901 1.144zm-2.071 18.06h2.417l-6.85-7.51-5.11 7.51H2.49l7.076-10.158L1.75 2.872h2.51l5.42 7.534L17.13 2.872h2.45l-7.79 8.54 7.27 7.76z"/>
+                        </svg>
+                         <span class="mt-2 text-sm font-semibold text-gray-600">Twitter (X)</span>
+                    </a>
+
+                    <a href="https://instagram.com/MarketHouse" target="_blank" class="enlace-social flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icono-social h-16 w-16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.068 1.488.064 2.373.303 2.946.572.356.167.734.378 1.066.709.33.33.54.708.708 1.066.27.573.509 1.458.572 2.946.056 1.266.068 1.646.068 4.85 0 3.204-.012 3.584-.068 4.85-.064 1.488-.303 2.373-.572 2.946-.167.356-.378.734-.709 1.066-.33.33-.708.54-1.066.708-.573.27-1.458.509-2.946.572-1.266.056-1.646.068-4.85.068-3.204 0-3.584-.012-4.85-.068-1.488-.064-2.373-.303-2.946-.572-.356-.167-.734-.378-1.066-.709-.33-.33-.54-.708-.708-1.066-.27-.573-.509-1.458-.572-2.946-.056-1.266-.068-1.646-.068-4.85 0-3.204.012-3.584.068-4.85.064-1.488.303-2.373.572-2.946.167-.356.378-.734.709-1.066.33-.33.708-.54 1.066-.708.573-.27 1.458-.509 2.946-.572 1.266-.056 1.646-.068 4.85-.068zm0-2.163c-3.266 0-3.676.015-4.943.072-1.606.077-2.733.34-3.694.717-.98.384-1.722.846-2.433 1.556s-1.172 1.453-1.556 2.433c-.378.96-.64 2.088-.718 3.694-.056 1.267-.072 1.677-.072 4.943 0 3.266.015 3.676.072 4.943.078 1.606.34 2.733.718 3.694.384.98.846 1.722 1.556 2.433s1.453 1.172 2.433 1.556c.96.378 2.088.64 3.694.718 1.267.056 1.677.072 4.943.072 3.266 0 3.676-.015 4.943-.072 1.606-.078 2.733-.34 3.694-.718.384-.98.846-1.722 1.556-2.433s1.172-1.453 1.556-2.433c.378-.96.64-2.088.718-3.694.056-1.267.072-1.677.072-4.943 0-3.266-.015-3.676-.072-4.943-.078-1.606-.34-2.733-.718-3.694-.384-.98-.846-1.722-1.556-2.433s-1.453-1.172-2.433-1.556c-.96-.378-2.088-.64-3.694-.718-1.267-.057-1.677-.072-4.943-.072zm0 5.838c-3.4 0-6.163 2.762-6.163 6.162s2.763 6.162 6.163 6.162 6.163-2.762 6.163-6.162c0-3.4-2.763-6.162-6.163-6.162zm0 10.163c-2.204 0-3.999-1.795-3.999-3.999 0-2.204 1.795-3.999 3.999-3.999 2.204 0 3.999 1.795 3.999 3.999 0 2.204-1.795 3.999-3.999 3.999zm6.495-9.352c0 .548.444.992.992.992.548 0 .992-.444.992-.992 0-.548-.444-.992-.992-.992-.548 0-.992.444-.992.992z"/>
+                        </svg>
+                         <span class="mt-2 text-sm font-semibold text-gray-600">Instagram</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="formulario-contacto" class="py-16">
+            <div class="contenedor max-w-2xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-8 text-gray-800">O Envíanos un Mensaje</h2>
+                <p class="text-center mb-6 text-gray-600">Llena el siguiente formulario y nos pondremos en contacto contigo lo antes posible.</p>
+
+                <form action="#" method="POST" class="bg-white p-8 rounded-lg shadow-xl">
+                    <div class="mb-4">
+                        <label for="nombre" class="block text-gray-700 font-semibold mb-2">Nombre Completo:</label>
+                        <input type="text" id="nombre" name="nombre" class="input-estilo" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 font-semibold mb-2">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" class="input-estilo" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="telefono" class="block text-gray-700 font-semibold mb-2">Teléfono (Opcional):</label>
+                        <input type="tel" id="telefono" name="telefono" class="input-estilo">
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="mensaje" class="block text-gray-700 font-semibold mb-2">Mensaje:</label>
+                        <textarea id="mensaje" name="mensaje" rows="4" class="textarea-estilo" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="boton boton-primario w-full text-lg">
+                         Enviar Mensaje
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="pie-de-pagina" class="py-8">
+        <div class="contenedor text-center">
+            <p>&copy; 2025 Inmobiliaria Market House. Todos los derechos reservados.</p>
+            <p class="text-sm mt-2">Diseñado con <span class="text-red-400"></span> para tu futuro hogar.</p>
+        </div>
+    </footer>
+    <script>
+        const botonHamburguesa = document.getElementById('boton-hamburguesa');
+        const menuPrincipal = document.getElementById('menu-principal');
+        
+        botonHamburguesa.addEventListener('click', () => {
+            
+            menuPrincipal.classList.toggle('menu-activo');
+            
+            menuPrincipal.classList.toggle('hidden'); 
+        });
+    </script>
+
 </body>
 </html>
