@@ -1,0 +1,182 @@
+:root {
+            --color-primario: #0A2E5D; 
+            --color-secundario: #F0F4F8;
+            --color-terciario: #FFC107;
+            --color-texto: #333333; 
+            --color-blanco: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #encabezado-principal {
+            background-color: var(--color-blanco);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .navegacion-barra {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        #logo {
+            font-size: 1.5rem; 
+            font-weight: 700;
+            color: var(--color-primario);
+            text-decoration: none;
+        }
+
+        #menu-principal a {
+            color: var(--color-primario);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+        }
+
+        #menu-principal a:hover {
+            color: var(--color-terciario);
+        }
+
+
+        #boton-hamburguesa {
+            display: none; 
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+
+        #seccion-bienvenida {
+            background-image: linear-gradient(rgba(10, 46, 93, 0.7), rgba(10, 46, 93, 0.7)), url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--color-blanco);
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .contenido-bienvenida h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .grilla-propiedades {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tarjeta-propiedad {
+            background-color: var(--color-blanco);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tarjeta-propiedad:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .tarjeta-propiedad img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .tarjeta-cuerpo {
+            padding: 1.5rem;
+        }
+
+        .tarjeta-titulo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-primario);
+            margin-bottom: 0.5rem;
+        }
+
+        .tarjeta-precio {
+            font-size: 1.5rem; 
+            font-weight: 700;
+            color: var(--color-terciario);
+            margin-bottom: 1rem;
+        }
+
+        .boton {
+            display: inline-block;
+            padding: 0.75rem 1.5rem; /* 12px 24px */
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .boton-primario {
+            background-color: var(--color-terciario);
+            color: var(--color-texto);
+        }
+
+        .boton-primario:hover {
+            background-color: #e6ac00; 
+        }
+
+        #pie-de-pagina {
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+        }
+
+        @media (max-width: 768px) {
+            .navegacion-barra {
+                position: relative;
+            }
+
+            #menu-principal {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px; 
+                left: 0;
+                width: 100%;
+                background-color: var(--color-blanco);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+
+
+            #menu-principal.menu-activo {
+                display: flex;
+            }
+
+            #menu-principal a {
+                padding: 1rem;
+                text-align: center;
+                border-top: 1px solid var(--color-secundario);
+            }
+
+            #boton-hamburguesa {
+                display: block; 
+            }
+
+            .contenido-bienvenida h1 {
+                font-size: 2.2rem; /* 35px */
+            }
+        }
